@@ -1,1 +1,3 @@
 baseurl: /
+tag_title_prefix: "Tagged as: "
+tag_title_suffix: ""
