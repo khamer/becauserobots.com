@@ -38,7 +38,6 @@
 			<nav class="primary">
 				<ul>
 					<li><a href="/projects">projects</a></li>
-					<li><a href="http://becauserobots.spreadshirt.com/us/US/Shop/">store</a>
 					<li><a href="/about">about</a></li>
 					<li class="contact">
 						<a href="#">Follow Me</a>
@@ -55,6 +54,54 @@
 		<section class="torso">
 
 <section class='blog'>
+	
+		<article>
+	<header>
+		<h2>
+			<a href='/2013/01/24/1-contemplating.html'>Boilerplates – Building an HTML5/CSS2 Starting Point</a>
+		</h2>
+	</header>
+	<div class='torso'>
+		<div>
+			<p>The project I&#8217;m spending the majority of my time on this week and last week is working on updating iMarc&#8217;s boilerplate – the basic HTML and CSS we use starting new projects – up to HTML5 elements with an eye towards responsive site design.</p><p>Previously, we had</p><ul>
+<li>A CSS Reset, based off of Eric Meyers&#8217;, which all sites were expected to have.</li>
+
+<li>A set of base CSS rules that were more or less &#8220;sane defaults&#8221; for most elements we use.</li>
+
+<li>An HTML file with lots of sample markup for testing the CSS on a given site. This fufilled two purpoess – to make sure we have a &#8216;complete&#8217; set of base styles on sites, and to make sure any content added via WYSIWYG fields in our CMS would be displayed properly.</li>
+</ul><p>When we started moving towards building reponsive sites, we started using the HTML5 Boiler plate. The HTML5 Boilerplate was a great way to start, but we wanted something leaner. I revisited Eric Meyers now updated thoughts on a reset and sought out normalize.css, took a look at <a href='https://github.com/dotink/inKLing'>inkLing</a>, and a few others.</p><p>My original goals were</p><ol>
+<li><strong>Support all of the HTML(5) elements that are implemented in IE, Webkit, and Gecko.</strong> We decided to go forward with using HTML5 tags on all new sites (and using the html5shiv to add support for IE7/IE8.)</li>
+
+<li><strong>Keep the CSS file short.</strong> We noticed that that once a CSS file reaches, say 2000 lines, laziness kicks in and lots of rules get appended that should be organized appropriately.</li>
+
+<li><strong>Implement markup that&#8217;s close to what we use most places.</strong> I looked a lot our recently finished sites and looked for what we did the most.</li>
+</ol><p><a href='https://github.com/imarc/boilerplate/commit/1441b598550b8630600899ea915057e199fb30a0'>This commit</a> is probably the closest to the state this was at this point. However, after working with this further, I realized I should revise my goals to</p><ol>
+<li><strong>Support only the HTML(5) elements that iMarc uses on nearly every site.</strong> Anything we don&#8217;t use, don&#8217;t reset. This substantially cleaned out a lot of CSS that wasn&#8217;t going to be important most of the time.</li>
+
+<li><strong>Keep the CSS file short.</strong> No serious change here.</li>
+
+<li><strong>Implment markup and CSS that reflects the &#8216;greatest common denominator&#8217; of our typical sites instead of the &#8216;average&#8217; of them.</strong> This was a big difference as well.</li>
+</ol><p>We&#8217;ll run through with this pass next, and it will probably influence our standard, as things like having a <code>div.site</code> in between the body and parts of the layout for widths, centering, etc., seems like a practice we should expect and implement everywhere.</p><p>Anyway, for now this site is based off of the earlier version of the boilerplate, but once we&#8217;ve ironed out some more I&#8217;ll update this site to make use of it as well. I&#8217;d also like to recommend the Firefox addon CSS Usage, which was a great way to identify which tags and selectors were in use on a given page.</p>
+		</div>
+		
+			<div class='meta'>
+				<div class='date'>2013-01-24 00:00:00 -0500</div>
+				<ul class='tags'>
+					
+						<li>
+							<a href='/tag/HTML5/'>HTML5</a>
+						</li>
+					
+						<li>
+							<a href='/tag/iMarc/'>iMarc</a>
+						</li>
+					
+				</ul>
+			</div>
+		
+	</div>
+</article>
+
 	
 		<article>
 	<header>
