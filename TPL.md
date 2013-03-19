@@ -6,14 +6,14 @@ layout: default
 Redistribution and use in source and binary forms, with or without modification, are permitted
 provided that the following conditions are met:
 
-  *	Redistributions of source code must retain the above copyright notice, this list of conditions
-	and the following disclaimer.
+* Redistributions of source code must retain the above copyright notice, this list of conditions
+  and the following disclaimer.
 
-  *	All Redistributors of source code must agree to license all software distributed in the future
-	under this license.
+* All Redistributors of source code must agree to license all software distributed in the future
+  under this license.
 
-  *	When obtaining the source code by any means of distribution a fee must be paid to the previous
-	license holder at the discretion of the license holder.
+* When obtaining the source code by any means of distribution a fee must be paid to the previous
+  license holder at the discretion of the license holder.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
 IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
