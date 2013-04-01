@@ -15,4 +15,6 @@ when I'm not being productive, I'm often in [/r/mechanicalkeyboards](https://red
 * both the Typematrix 2020 and Typematrix 2030 keyboards, although the 2020
   doesn't work properly.
 
+These days I've also become very distracted with DayZ, a zombie survival game.
+
 And, when I'm not doing that, I like to playing Minecraft with friends. Sometimes I also run a server, but at the moment I mostly play on [Project M](http://www.projectmserver.com/), a SMP server one of my friends runs.
