@@ -1,0 +1,3 @@
+[submodule "tin"]
+	path = tin
+	url = git@github.com:khamer/tin.git
