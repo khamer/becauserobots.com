@@ -19,28 +19,29 @@
  */
 
 /* = Colors = */
-$background: #fcfcfc;
+$background: #fff;
 $text: #555;
-$selection: #fff6b5;
+$selection: #ccc;
 
 $darkgray: #1a1a1a;
 $midgray: #2a2a2a;
 $lightgray: #ccc;
-$lightestgray: #e9e9e9;
-$white: #fcfcfc;
+$lightestgray: #ddd;
+$white: #f2f2f2;
 
 $textgray: #888;
-$textprimary: #f2006d;
-$textsecondary: #0096d2;
-$textsecondarylit: #13abe8;
-$textsecondaryfocused: #0084b8;
+$textprimary: #e33;
+$textsecondary: #e33;
+$textsecondarylit: #f44;
+$textsecondaryfocused: #d22;
 
 $success: #ecfae8;
 $error: #ffd7d7;
 $info: #bde5f8;
 
 /* = Web Fonts = */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700);
 
 
 /* = Base = */
@@ -74,7 +75,7 @@ img {
 html {
 	background: $darkgray;
 	color: $text;
-	font-family:  Arial, Helvetica, sans-serif;
+	font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
@@ -172,6 +173,11 @@ header.primary {
 			a {
 				color: $white;
 			}
+
+			em {
+				font-style: normal;
+				color: $textprimary;
+			}
 		}
 	}
 }
@@ -238,7 +244,6 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: normal;
 
 	&:first-child {
@@ -364,7 +369,7 @@ blockquote {
 
 pre,
 code {
-	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', monospace;
+	font-family: 'Ubuntu Mono', Menlo, Consolas, 'Courier New', monospace;
 	font-size: .9em;
 }
 
@@ -521,7 +526,6 @@ header.secondary {
 
 				> a {
 					color: $lightgray;
-					font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 					white-space: nowrap;
 				}
 				> a:hover {
@@ -710,7 +714,6 @@ a.button {
 	border: none;
 	color: #fff;
 	display: inline-block;
-	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 600;
 	line-height: 1;
 	margin-bottom: .5em;
