@@ -19,7 +19,7 @@
  */
 
 /* = Colors = */
-$background: #fff;
+$background: #111;
 $text: #555;
 $selection: #ccc;
 
@@ -75,7 +75,7 @@ img {
 html {
 	background: $darkgray;
 	color: $text;
-	font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+	font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
@@ -158,11 +158,19 @@ header.primary,
 .torso,
 footer.primary {
 	position: relative;
-	margin-bottom: 2.5em;
 }
 
 header.primary {
 	background: $darkgray;
+	background: -moz-linear-gradient(top, $midgray 0%, $darkgray 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$midgray), color-stop(100%,$darkgray));
+	background: -webkit-linear-gradient(top, $midgray 0%,$darkgray 100%);
+	background: -o-linear-gradient(top, $midgray 0%,$darkgray 100%);
+	background: -ms-linear-gradient(top, $midgray 0%,$darkgray 100%);
+	background: linear-gradient(to bottom, $midgray 0%,$darkgray 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$midgray', endColorstr='$darkgray',GradientType=0 );
+
+	box-shadow: 0 4px 0 0 $lightgray;
 
 	.branding {
 		padding: 1.5em 16px;
@@ -183,10 +191,13 @@ header.primary {
 }
 
 .torso {
+	padding-top: 1em;
+
 	.main,
 	aside.primary {
 		padding-left: 16px;
 		padding-right: 16px;
+		margin-bottom: 1em;
 
 		article {
 			.meta {
@@ -206,7 +217,6 @@ header.primary {
 
 		aside {
 			background: $white;
-			border-radius: 5px;
 			color: $textgray;
 			float: right;
 			font-size: .875em;
@@ -220,15 +230,50 @@ header.primary {
 	}
 
 	aside.primary {
+		background: $darkgray;
+		background: -moz-linear-gradient(top, $midgray 0%, $darkgray 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$midgray), color-stop(100%,$darkgray));
+		background: -webkit-linear-gradient(top, $midgray 0%,$darkgray 100%);
+		background: -o-linear-gradient(top, $midgray 0%,$darkgray 100%);
+		background: -ms-linear-gradient(top, $midgray 0%,$darkgray 100%);
+		background: linear-gradient(to bottom, $midgray 0%,$darkgray 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$midgray', endColorstr='$darkgray',GradientType=0 );
+
+		box-shadow: 4px 4px 0 0 $lightgray;
+		color: $lightgray;
+		
+		padding-left: 8px;
+		padding-right: 8px;
+		
+
 		article,
 		section {
 			margin-bottom: 1.5em;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			margin-left: -8px;
+			margin-right: -8px;
+			padding-left: 8px;
+			padding-right: 8px;
+			color: $white;
+			border-bottom: 4px solid $textprimary;
 		}
 	}
 }
 
 footer.primary {
 	background: $darkgray;
+	background: -moz-linear-gradient(top, $midgray 0%, $darkgray 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$midgray), color-stop(100%,$darkgray));
+	background: -webkit-linear-gradient(top, $midgray 0%,$darkgray 100%);
+	background: -o-linear-gradient(top, $midgray 0%,$darkgray 100%);
+	background: -ms-linear-gradient(top, $midgray 0%,$darkgray 100%);
+	background: linear-gradient(to bottom, $midgray 0%,$darkgray 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$midgray', endColorstr='$darkgray',GradientType=0 );
+
+	box-shadow: 0 -4px 0 0 $lightgray;
+
 	color: $textgray;
 	font-size: 0.875em;
 	padding-top: 2.5em;
@@ -244,6 +289,7 @@ h3,
 h4,
 h5,
 h6 {
+	font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 
 	&:first-child {
@@ -253,7 +299,7 @@ h6 {
 
 h1 {
 	color: $textprimary;
-	font-size: 3em;
+	font-size: 3.125em;
 	line-height: 1.2;
 	margin-top: 1.67em;
 	margin-bottom: .5em;
@@ -353,7 +399,6 @@ blockquote {
 
 	.highlight {
 		background: $lightestgray;
-		border-radius: 5px;
 		color: $textgray;
 		font-size: 1.5em;
 		line-height: 1.34;
@@ -407,11 +452,12 @@ a {
 
 	&:hover,
 	&:active {
-		color: $textgray;
+		color: $textsecondarylit;
 		outline: 0;
 	}
 
 	&:focus {
+		color: $textsecondaryfocused;
 		outline: thin dotted;
 	}
 }
@@ -434,7 +480,7 @@ ul {
 }
 
 ul {
-	list-style: disc;
+	list-style: square;
 }
 
 dt {
@@ -527,14 +573,15 @@ header.secondary {
 				> a {
 					color: $lightgray;
 					white-space: nowrap;
+					border-bottom: 4px solid transparent;
 				}
 				> a:hover {
-					color: $white;
+					border-bottom: 4px solid $textsecondary;
 				}
 			}
 			> li.active {
 				> a {
-					color: $textsecondary;
+					border-bottom: 4px solid $textsecondary;
 				}
 			}
 		}
@@ -649,7 +696,6 @@ fieldset .help {
 input[type="text"],
 input[type="password"],
 textarea {
-	border-radius: 2px;
 	border: 0;
 	box-shadow: 0 1px 4px 0 #848484 inset;
 	color: #333;
@@ -710,7 +756,6 @@ input[type="reset"],
 input[type="submit"],
 a.button {
 	background: $textsecondary;
-	border-radius: 3px;
 	border: none;
 	color: #fff;
 	display: inline-block;
@@ -740,7 +785,6 @@ input::-moz-focus-inner {
 /* = Messaging = */
 
 .messaging {
-	border-radius: 5px;
 	margin-bottom: 1.5em;
 	padding: 1em 3.25em;
 	position: relative;
@@ -912,6 +956,11 @@ table {
 			ul {
 				li {
 					margin-bottom: 0;
+
+					a {
+						padding-left: 32px;
+						padding-right: 32px;
+					}
 				}
 
 				li.active {
@@ -980,7 +1029,7 @@ table {
 		}
 
 		aside.primary {
-			width: 24%;
+			width: 23%;
 			float: right;
 			-ms-box-sizing: border-box;
 			-moz-box-sizing: border-box;

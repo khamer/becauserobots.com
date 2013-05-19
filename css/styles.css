@@ -102,11 +102,18 @@ header.primary,
 .torso,
 footer.primary {
   position: relative;
-  margin-bottom: 2.5em;
 }
 
 header.primary {
   background: #1a1a1a;
+  background: -moz-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2a2a2a), color-stop(100%, #1a1a1a));
+  background: -webkit-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: -o-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: -ms-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$midgray', endColorstr='$darkgray',GradientType=0 );
+  box-shadow: 0 -4px 0 #2a2a2a inset, 0 0 4px 1px #1a1a1a;
 }
 header.primary .branding {
   padding: 1.5em 16px;
@@ -122,6 +129,9 @@ header.primary .branding h1 em {
   color: #ee3333;
 }
 
+.torso {
+  padding-top: 1em;
+}
 .torso .main,
 .torso aside.primary {
   padding-left: 16px;
@@ -151,13 +161,45 @@ header.primary .branding h1 em {
   text-shadow: 0px 1px 0px #fff;
   width: 33.33%;
 }
+.torso aside.primary {
+  background: #1a1a1a;
+  background: -moz-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2a2a2a), color-stop(100%, #1a1a1a));
+  background: -webkit-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: -o-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: -ms-linear-gradient(top, #2a2a2a 0%, #1a1a1a 100%);
+  background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$midgray', endColorstr='$darkgray',GradientType=0 );
+  border: 4px solid #2a2a2a;
+  border-radius: 4px;
+  box-shadow: 0 0 4px 1px #1a1a1a;
+  color: #cccccc;
+  padding-left: 4px;
+  padding-right: 4px;
+}
 .torso aside.primary article,
 .torso aside.primary section {
   margin-bottom: 1.5em;
 }
+.torso aside.primary h1, .torso aside.primary h2, .torso aside.primary h3, .torso aside.primary h4, .torso aside.primary h5, .torso aside.primary h6 {
+  margin-left: -8px;
+  margin-right: -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #f2f2f2;
+  border-bottom: 4px solid #ee3333;
+}
 
 footer.primary {
   background: #1a1a1a;
+  background: -moz-linear-gradient(top, #1a1a1a 0%, #2a2a2a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1a1a1a), color-stop(100%, #2a2a2a));
+  background: -webkit-linear-gradient(top, #1a1a1a 0%, #2a2a2a 100%);
+  background: -o-linear-gradient(top, #1a1a1a 0%, #2a2a2a 100%);
+  background: -ms-linear-gradient(top, #1a1a1a 0%, #2a2a2a 100%);
+  background: linear-gradient(to bottom, #1a1a1a 0%, #2a2a2a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$darkgray', endColorstr='$midgray',GradientType=0 );
+  box-shadow: 0 4px 0 #2a2a2a inset, 0 0 4px 1px #1a1a1a;
   color: #888888;
   font-size: 0.875em;
   padding-top: 2.5em;
@@ -346,10 +388,11 @@ a:visited {
   color: #ee3333;
 }
 a:hover, a:active {
-  color: #888888;
+  color: #ff4444;
   outline: 0;
 }
 a:focus {
+  color: #dd2222;
   outline: thin dotted;
 }
 
@@ -459,14 +502,15 @@ header.primary nav.primary > ul > li > a,
 header.secondary nav.primary > ul > li > a {
   color: #cccccc;
   white-space: nowrap;
+  border-bottom: 4px solid transparent;
 }
 header.primary nav.primary > ul > li > a:hover,
 header.secondary nav.primary > ul > li > a:hover {
-  color: #f2f2f2;
+  border-bottom: 4px solid #ee3333;
 }
 header.primary nav.primary > ul > li.active > a,
 header.secondary nav.primary > ul > li.active > a {
-  color: #ee3333;
+  border-bottom: 4px solid #ee3333;
 }
 header.primary nav.utility,
 header.secondary nav.utility {
@@ -800,6 +844,11 @@ table thead th {
   header.secondary nav.primary ul li {
     margin-bottom: 0;
   }
+  header.primary nav.primary ul li a,
+  header.secondary nav.primary ul li a {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
   header.primary nav.primary ul li.active,
   header.secondary nav.primary ul li.active {
     background: none;
@@ -918,6 +967,11 @@ html.lt-ie9 header.primary nav.primary ul li,
 html.lt-ie9 header.secondary nav.primary ul li {
   margin-bottom: 0;
 }
+html.lt-ie9 header.primary nav.primary ul li a,
+html.lt-ie9 header.secondary nav.primary ul li a {
+  padding-left: 32px;
+  padding-right: 32px;
+}
 html.lt-ie9 header.primary nav.primary ul li.active,
 html.lt-ie9 header.secondary nav.primary ul li.active {
   background: none;
@@ -969,7 +1023,7 @@ html.lt-ie9 header.primary .branding {
     width: 76%;
   }
   .torso aside.primary {
-    width: 24%;
+    width: 23%;
     float: right;
     -ms-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -988,7 +1042,7 @@ html.lt-ie9 .torso .main {
   width: 76%;
 }
 html.lt-ie9 .torso aside.primary {
-  width: 24%;
+  width: 23%;
   float: right;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;

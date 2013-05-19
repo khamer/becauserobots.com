@@ -1,3 +1,14 @@
 baseurl: /
 markdown: maruku
 title: Because<b>Robots</b>
+
+navigation:
+- text: blog
+  relative_url: /
+  url: /index.html
+- text: projects
+  relative_url: projects
+  url: /projects.html
+- text: about
+  relative_url: about
+  url: /about.html
