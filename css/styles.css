@@ -138,16 +138,29 @@ header.primary .branding h1 em {
   padding-right: 16px;
   margin-bottom: 1em;
 }
+.torso .main article,
+.torso aside.primary article {
+  border-bottom: 4px solid #cccccc;
+}
 .torso .main article .meta,
 .torso aside.primary article .meta {
   color: #888888;
   font-size: .875em;
   margin-top: -.5em;
   margin-bottom: 1em;
+  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+  height: 9px;
+  border-bottom: 4px solid #cccccc;
+}
+.torso .main article .meta .date,
+.torso aside.primary article .meta .date {
+  padding-right: 3px;
+  display: inline;
+  background: #f2f2f2;
 }
 .torso .main article,
 .torso .main section {
-  margin-bottom: 3em;
+  margin-bottom: 5em;
 }
 .torso .main aside {
   background: #f2f2f2;
@@ -172,18 +185,16 @@ header.primary .branding h1 em {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$midgray', endColorstr='$darkgray',GradientType=0 );
   box-shadow: 4px 4px 0 0 #cccccc;
   color: #cccccc;
-  padding-left: 8px;
-  padding-right: 8px;
 }
 .torso aside.primary article,
 .torso aside.primary section {
   margin-bottom: 1.5em;
 }
 .torso aside.primary h1, .torso aside.primary h2, .torso aside.primary h3, .torso aside.primary h4, .torso aside.primary h5, .torso aside.primary h6 {
-  margin-left: -8px;
-  margin-right: -8px;
-  padding-left: 8px;
-  padding-right: 8px;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
   color: #f2f2f2;
   border-bottom: 4px solid #ee3333;
 }

@@ -3,10 +3,13 @@ title: About Kevin Hamer
 layout: default
 ---
 
-I am Kevin Hamer and I am a lead web engineer at **iMarc** in Newburyport,
-Massachusetts. I run vim and XFCE (Xubuntu) on a Lenovo X1 Carbon these days. I prefer mercurial to git or subversion, but unfortunately GitHub has far more mindshare than BitBucket.
+I am Kevin Hamer and I am a lead web engineer at **iMarc** in Newburyport, Massachusetts. I run vim
+and XFCE (Xubuntu) on a Lenovo X1 Carbon these days. I prefer mercurial to git or subversion, but
+unfortunately GitHub has far more mindshare than BitBucket.
 
-when I'm not being productive, I'm often in [/r/mechanicalkeyboards](https://reddit.com/r/mechanicalkeyboards). I own four mechanical and three unusual form factor keyboards at the moment:
+when I'm not being productive, I'm often in
+[/r/mechanicalkeyboards](https://reddit.com/r/mechanicalkeyboards). I own four mechanical and three
+unusual form factor keyboards at the moment:
 
 * two Leopold FC-200RL/AB Tenkeyless keyboards with mechanical Cherry MX Black switches,
 * an IBM Model M2 Keyboard from 1993,
@@ -15,6 +18,8 @@ when I'm not being productive, I'm often in [/r/mechanicalkeyboards](https://red
 * both the Typematrix 2020 and Typematrix 2030 keyboards, although the 2020
   doesn't work properly.
 
-These days I've also become very distracted with DayZ, a zombie survival game.
+These days I've also become distracted with DayZ, a zombie survival game. I'm also prone to spending
+time playing Kerbal Space Program, an exceptional indie game.
 
-And, when I'm not doing that, I like to playing Minecraft with friends. Sometimes I also run a server, but at the moment I mostly play on [Project M](http://www.projectmserver.com/), a SMP server one of my friends runs.
+I still occasionally playing Minecraft as well, but between avoiding zombies and working my way to
+Jop, I keep myself entertained.
