@@ -1,6 +1,9 @@
 baseurl: /
 markdown: maruku
 title: Because<b>Robots</b>
+name: BecauseRobots
+description: Kevin Hamer's Blog
+url: http://becauserobots.com
 
 navigation:
 - text: blog
