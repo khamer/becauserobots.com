@@ -25,32 +25,41 @@
  */
 
 /* = Variables = */
-$primary_text: #555;
-$meta_text: #888;
-$matte: #333;
-$background: #fcfcfc;
+/*
+#171717 Cod Gray 0b0b0b
+#2D2D2D Mine Shaft 323232
+#F8C630 Saffron f4c430
+#8ED5E1 Morning Glory 9edee0
+#EE3333 Pomegranate f34723
+*/
+$gold: #f4c430;
+$blue: #8ed5e1;
+$red:  #ee3333;
 
-$border: #ddd;
+$matte:      #222222;
+$torso_bg:   #171717;
+$selection:  mix($red, $matte, 50%);
 
-$primary_nav: #2e2e2e;
-$secondary_nav: blue;
+$baseText: 18px;
 
-$selection: #FFF6B5;
+$plain_text: #bbbbbb;
+$meta_text:  #555555;
+$link:       $red;
+$link_hover: $gold;
 
-$link: #0096d2;
-$link_hover: #888;
+$border:     $meta_text;
 
-$success: #ECFAE8;
-$error: #FFD7D7;
-$info: #BDE5F8;
+$success:    darken(#D2F8B0, 80%); // Gossip
+$error:      darken(#FFD8D9, 80%); // Cosmos
+$info:       darken(#B8E0F9, 80%); // Sail
 
 /* = Web Fonts = */
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import url(http://fonts.googleapis.com/css?family=Signika:300,400,600|Signika+Negative:300,400,600);
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url('fonts/fontawesome-webfont.eot?v=3.2.1');
-  src: url('fonts/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('fonts/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('fonts/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('fonts/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+  src: url('../fonts/fontawesome-webfont.eot?v=3.2.1');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=3.2.1') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=3.2.1') format('truetype'), url('../fonts/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -77,22 +86,24 @@ article, aside, audio, canvas, footer, header, nav, section, video {
 }
 
 html {
+
 	background: $matte;
-	color: $primary_text;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
+	color: $plain_text;
+	font-family: 'Signika Negative', Arial, Helvetica, sans-serif;
+	font-weight: 300;
+
+	font-size: $baseText;
 	line-height: 1.5;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
 
 body {
-	background: $background;
+	background: $torso_bg;
 	min-width: 300px;
 }
 
 img {
-	-ms-interpolation-mode: bicubic;
 	max-width: 100%;
 	vertical-align: middle;
 }
@@ -124,22 +135,18 @@ img {
 @mixin container {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 1408px;
-	padding-left: 16px;
-	padding-right: 16px;
+	max-width: 1024px;
+	padding-left: $baseText;
+	padding-right: $baseText;
+	position: relative;
 }
 
 @mixin columns {
-	> * {
-		display: block;
-		width: 100%;
-	}
-
 	> hr {
 		display: none;
 	}
 
-	@include for-tablets {
+	@include for-tablets-and-up {
 		display: table;
 		table-layout: fixed;
 		width: 100%;
@@ -149,19 +156,24 @@ img {
 			vertical-align: top;
 		}
 		> hr {
-			width: 1em;
+			display: table-cell;
+			width: $baseText;
 		}
 	}
 }
 
-@mixin for-mobile {
-	@media only screen and (max-width: 640px) {
+@mixin for-tablets-and-up {
+	@media only screen and (min-width: 600px) {
+		@content;
+	}
+
+	html.lt-ie9 & {
 		@content;
 	}
 }
 
-@mixin for-tablets {
-	@media only screen and (min-width: 641px) {
+@mixin tablets-and-up {
+	@media only screen and (min-width: 600px) {
 		@content;
 	}
 
@@ -170,8 +182,18 @@ img {
 	}
 }
 
-@mixin for-desktops {
-	@media only screen and (min-width: 800px) {
+@mixin for-desktops-and-up {
+	@media only screen and (min-width: 700px) {
+		@content;
+	}
+
+	html.lt-ie9 & {
+		@content;
+	}
+}
+
+@mixin desktops-and-up {
+	@media only screen and (min-width: 700px) {
 		@content;
 	}
 
@@ -197,76 +219,81 @@ img {
 /* = Layout = */
 header.primary {
 	background: $matte;
-	margin-bottom: 1.5em;
 
 	.branding {
 		h1 {
+			font-size: 1.5 * $baseText;
 			padding-bottom: 0;
 
 			a,
 			a:hover {
+				color: $plain_text;
 				display: block;
-				padding-top: .5em;
 				padding-bottom: .5em;
-				color: $background;
+				padding-top: .5em;
+			}
+
+			&:before {
+				display: none;
 			}
 		}
 	}
 }
 
-.torso {
-	margin-bottom: 1.5em;
+.main, aside.primary {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
 }
-.meta {
-	color: $meta_text;
-	font-size: .875em;
-	margin-bottom: 1em;
-	margin-top: -.5em;
-}
-.main {
-	article,
-	section {
-		margin-bottom: 3em;
-	}
 
-	aside {
-		background: mix($background, $meta_text, 80%);
-		color: $meta_text;
-		//float: right;
-		font-size: .875em;
-		margin-bottom: 1em;
-		//margin-left: 1em;
-		padding: 1.333em;
-		//width: 33.33%;
+.main {
+	background: $torso_bg;
+}
+
+.main p {
+	text-align: justify;
+	text-justify: distribute;
+}
+
+.main section {
+	&:after {
+		content: '';
+		display: block;
+		background: $border;
+		margin-top: 1.5em;
+		margin-bottom: 1.5em;
+		height: 1px;
 	}
 }
 
 aside.primary {
+	background: $matte;
 	display: none;
+}
 
-	article,
-	section {
-		margin-bottom: 1.5em;
-	}
+.main aside {
+	background: mix($torso_bg, $meta_text, 80%);
+	color: $meta_text;
+	//float: right;
+	font-size: .875 * $baseText;
+	margin-bottom: 1em;
+	//margin-left: 1em;
+	padding: 1.333em;
+	//width: 33.33%;
 }
 
 footer.primary {
+	border-top: 3px solid $border;
 	background: $matte;
 	color: $meta_text;
-	font-size: .875em;
+	font-size: .875 * $baseText;
 	padding-top: 1em;
 	padding-bottom: 1em;
 }
 
 /* = Typography = */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-weight: normal;
+%heading {
+	font-weight: 300;
+	position: relative;
 
 	&:first-child {
 		padding-top: 0;
@@ -279,47 +306,53 @@ h3 + h4,
 h4 + h5,
 h5 + h6 {
 	padding-top: 0;
-	margin-top: -.5em;
+	margin-top: -$baseText;
 }
 
 h1 {
-	font-size: 2.5em;
+	@extend %heading;
+	color: $red;
+	font-size: 2.5 * $baseText;
 	line-height: 1.2;
 	padding-bottom: .6em;
-	padding-top: 1.5em;
+	padding-top: 0.6em;
 }
 
 h2 {
-	font-size: 2em;
+	@extend %heading;
+	color: $gold;
+	font-size: 2 * $baseText;
 	line-height: 1.2;
-	padding-bottom: .5em;
-	padding-top: 1.2em;
+	padding-bottom: .75em;
+	padding-top: .75em;
 }
 
 h3 {
-	font-size: 1.5em;
+	@extend %heading;
+	color: $blue;
+	font-size: 1.5 * $baseText;
 	line-height: 1.3;
-	padding-bottom: .4em;
-	padding-top: 1.8em;
+	padding-bottom: 1em;
+	padding-top: 1em;
 }
 
 h4 {
-	font-size: 1.25em;
+	@extend %heading;
+	font-size: 1.25 * $baseText;
 	line-height: 1.4;
-	padding-bottom: .4em;
-	padding-top: 1.8em;
+	padding-bottom: 1.2em;
+	padding-top: 1.2em;
 }
 
-h5 {
-	font-size: 1em;
-	padding-bottom: .4em;
-	padding-top: 1.8em;
+.main %heading {
+	margin-left: -$baseText;
 }
 
-h6 {
-	font-size: .9em;
-	padding-bottom: .4em;
-	padding-top: 1.8em;
+.meta {
+	color: $meta_text;
+	font-size: .75 * $baseText;
+	margin-bottom: .5em;
+	margin-top: -.667em;
 }
 
 abbr[title] {
@@ -328,7 +361,8 @@ abbr[title] {
 
 b,
 strong {
-	font-weight: bold;
+	color: lighten($plain_text, 30%);
+	font-weight: 400;
 }
 
 i,
@@ -346,34 +380,35 @@ pre {
 blockquote {
 	border-left: 1px solid $border;
 	font-style: italic;
-	margin-left: 16px;
-	padding-left: 16px;
+	padding-left: $baseText;
+}
+
+article {
+	margin-bottom: 3em;
 }
 
 .intro {
-	border-bottom: 1px solid $border;
 	color: $meta_text;
-	margin-bottom: 1.5em;
-	padding-bottom: 1.5em;
 
 	p {
-		font-size: 1.25em;
+		font-size: 1.25 * $baseText;
 		line-height: 1.6;
 		margin-bottom: .8em;
 	}
 }
 
 .highlight {
-	background: mix($background, $meta_text, 80%);
+	background: mix($torso_bg, $meta_text, 80%);
 	color: $meta_text;
-	font-size: 1.5em;
+	font-size: 1.5 * $baseText;
 	line-height: 1.34;
+
 	margin-bottom: 1em;
 	padding: .67em;
-	text-shadow: 0px 1px 0px lighten($meta_text, 45%);
+	text-shadow: 0 1px 0 darken($meta_text, 45%);
 
 	a {
-		text-shadow: 0px 1px 0px lighten($link, 45%);
+		text-shadow: 0 1px 0 darken($link, 45%);
 	}
 
 	p {
@@ -384,7 +419,9 @@ blockquote {
 pre,
 code {
 	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', monospace;
-	font-size: .9em;
+	font-size: .875 * $baseText;
+	background: lighten($torso_bg, 5%);
+	font-weight: 400;
 }
 
 pre {
@@ -403,7 +440,7 @@ address {
 
 hr {
 	border: 0;
-	border-top: 1px solid $meta_text;
+	border-top: 1px solid $border;
 	display: block;
 	height: 0;
 	margin: 2em auto 3em;
@@ -417,7 +454,6 @@ a {
 	&:hover,
 	&:active {
 		color: $link_hover;
-		outline: 0;
 	}
 
 	&:focus {
@@ -447,7 +483,7 @@ ul {
 }
 
 dt {
-	font-weight: bold;
+	font-weight: 600;
 	padding-left: .5em;
 }
 
@@ -457,7 +493,7 @@ dd {
 
 sup,
 sub {
-	font-size: 80%;
+	font-size: .875 * $baseText;
 }
 
 sup {
@@ -468,13 +504,36 @@ sub {
 	vertical-align: bottom;
 }
 
-nav ul {
-	list-style: none;
-	padding-left: 0;
+nav {
+	@include grouping;
+	position: relative;
 
-	li {
+	ul {
+		list-style: none;
+		padding-left: 0;
 		margin-bottom: 0;
+		position: relative;
+
+		li {
+			white-space: nowrap;
+			margin-bottom: 0;
+			float: left;
+			display: block;
+
+			a {
+				padding: .5em 10px;
+			}
+		}
 	}
+
+	ul.container {
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+}
+
+.main nav ul li ~ li {
+	border-left: 1px solid $border;
 }
 
 /* = Iconography = */
@@ -508,7 +567,7 @@ a[class*="icon-"]:before {
 	font-size: 0;
 
 	&:before {
-		font-size: 32px;
+		font-size: 2 * $baseText;
 	}
 }
 
@@ -523,7 +582,7 @@ a[class*="icon-"]:before {
 		a.pdf:before,
 		a.word:before,
 		a[class*="icon-"]:before {
-			color: $primary_text;
+			color: $plain_text;
 			padding-right: .5em;
 		}
 	}
@@ -620,77 +679,77 @@ a.pdf:before,
 
 /* = Navigation = */
 nav.primary {
-	background: $primary_nav;
-	position: relative;
+	box-shadow: 0 -3px $border inset;
+	z-index: 1;
 
-	&:before {
-		position: absolute;
+	&:before,
+	ul:before {
 		bottom: 100%;
-		right: 0;
 		color: #000;
-		line-height: 1.2;
-		padding: .5em;
-		font-size: 2.5em;
-		content: '☰';
+		content: '\f0c9';
 		display: block;
+		font-family: 'FontAwesome';
+		font-size: 2.5 * $baseText;
+		padding: .35em .6em;
+		position: absolute;
+		right: 0;
 	}
 
-	> ul {
-		position: relative;
-		padding-left: 0;
-		padding-right: 0;
+	ul {
 
 		&:before {
-			content: '☰';
-			display: block;
-			font-size: 2.5em;
-			line-height: 1.2;
-			padding: .5em;
-			position: absolute;
-			right: 0;
-			bottom: 100%;
-		}
-
-		> li {
-			display: none;
-
-			ul {
-				display: none;
-			}
-		}
-	}
-
-	> ul:focus {
-		&:before {
-			display: none;
+			color: $plain_text;
 		}
 
 		li {
-			display: block;
+			float: none;
+			display: none;
+
+			.dropdown {
+				display: none;
+			}
 
 			a {
 				border-top: 1px solid #212121;
 				display: block;
-				padding: .825em 16px;
-				line-height: 1;
-				font-weight: bold;
+				padding: .5em $baseText;
 				color: #fff;
-				font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-				font-weight: 600;
 
 				&:before {
+					font-family: 'FontAwesome';
 					float: right;
-					content: '❯';
+					content: '\f054';
 				}
 			}
 		}
 
 		li:hover,
 		li.active {
-			a {
-				color: $link;
+			background: #1a1a1a;
+
+			> a {
+				box-shadow: 0 -3px $link inset;
+
+				&:before {
+					margin-right: -.5em;
+				}
 			}
 		}
+	}
+
+	ul.focused {
+		&:before {
+			display: none;
+		}
+
+		li {
+			display: block;
+		}
+	}
+
+	ul.container {
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 
@@ -700,6 +759,42 @@ nav.secondary {
 
 nav.utility {
 	display: none;
+}
+
+nav.supplemental {
+	ul {
+		li {
+			float: none;
+
+			a {
+				padding: .25em 0;
+				display: block;
+			}
+
+			a:hover {
+				color: $link;
+			}
+		}
+
+		ul {
+			a {
+				padding: 0;
+				color: $meta_text;
+				font-size: .75 * $baseText;
+				line-height: 2;
+			}
+		}
+	}
+
+	> ul {
+		> li {
+			padding-bottom: .5em;
+		}
+		> li ~ li {
+			padding-top: .5em;
+			border-top: 1px solid $border;
+		}
+	}
 }
 
 /* = Forms = */
@@ -727,18 +822,18 @@ label {
 	color: #333;
 	cursor: pointer;
 	display: block;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: 2;
 }
 
-span.required {
+.required {
 	color: #ac181b;
 }
 
 fieldset .help {
 	color: $meta_text;
 	display: block;
-	font-size: .75em;
+	font-size: .75 * $baseText;
 	line-height: 1.34;
 	margin: 0;
 	padding: 0;
@@ -747,12 +842,11 @@ fieldset .help {
 input[type="password"],
 input[type="text"],
 textarea {
-	border-radius: 3px;
 	border: 1px solid #ccc;
-	color: $primary_text;
+	color: $plain_text;
 	display: block;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1em;
+	font-size: $baseText;
 	margin: 0;
 	padding: 0.4em 1%;
 	width: 98%;
@@ -785,7 +879,7 @@ input[type="radio"] {
 input[type="file"] {
 	color: #333;
 	display: block;
-	font-size: 1em;
+	font-size: $baseText;
 	width: 100%;
 }
 
@@ -793,6 +887,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+	-moz-appearance: button;
 	-webkit-appearance: button;
 	cursor: pointer;
 }
@@ -802,14 +897,11 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"],
 a.button {
-	background: $link;
-	border: none;
-	border-bottom: 2px solid darken($link, 5%);
-	border-radius: 3px;
-	color: #fff;
+	background: $red;
+	color: $matte;
 	display: inline-block;
-	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-weight: 600;
+	font-family: 'Signika', Arial, Helvetica, sans-serif;
+	font-weight: 400;
 	line-height: 1;
 	margin-bottom: .5em;
 	margin-right: .5em;
@@ -817,14 +909,23 @@ a.button {
 	text-align: center;
 
 	&:hover {
-		background: $link_hover;
-		border-color: darken($link_hover, 5%);
+		background: lighten($red, 20%);
+		box-shadow: 0 0 $baseText*2 $red inset;
 		cursor: pointer;
 	}
 
 	&:focus {
 		background: #0084B8;
 	}
+}
+
+button.disabled,
+input[type="button"][disabled],
+input[type="reset"][disabled],
+input[type="submit"][disabled],
+a.button.disabled {
+	background: $meta_text;
+	cursor: default;
 }
 
 button::-moz-focus-inner,
@@ -836,7 +937,6 @@ input::-moz-focus-inner {
 /* = Messaging = */
 
 .messaging {
-	border-radius: 5px;
 	margin-bottom: 1.5em;
 	padding: 1em 3.25em;
 	position: relative;
@@ -849,7 +949,7 @@ input::-moz-focus-inner {
 		content:'';
 		display: block;
 		font-family: 'FontAwesome';
-		font-size: 20px;
+		font-size: 1.25 * $baseText;
 		height: 23px;
 		left: 1em;
 		position: absolute;
@@ -890,7 +990,7 @@ table {
 	width: 100%;
 
 	caption {
-		font-size: .75em;
+		font-size: .75 * $baseText;
 	}
 
 	td,
@@ -902,7 +1002,7 @@ table {
 	}
 
 	th {
-		font-weight: bold;
+		font-weight: 600;
 	}
 
 	thead {
@@ -918,23 +1018,128 @@ table {
 
 
 /* = Media Queries = */
-@include for-tablets {
+@include tablets-and-up {
 	.main aside {
 		float: right;
 		margin-left: 1em;
 		width: 33.33%;
 	}
+
+	nav.utility {
+		display: block;
+		position: absolute;
+		right: 10px;
+		top: 13px;
+
+		a {
+			display: block;
+			color: $meta_text;
+			font-size: 1.5 * $baseText;
+		}
+
+		li.active,
+		li:hover {
+			a {
+				color: $plain_text;
+			}
+		}
+	}
+
+	nav.secondary {
+		display: block;
+		background: #2e2e2e;
+
+		a {
+			display: block;
+			color: #bbbbbb;
+			font-size: .75 * $baseText;
+			line-height: 2;
+		}
+
+		li.active,
+		li:hover {
+			a {
+				color: $link;
+			}
+		}
+	}
+
+	nav.primary {
+		&:before,
+		ul:before {
+			display: none;
+		}
+
+		ul {
+			li {
+				float: left;
+				display: block;
+				a {
+					border-top: 0;
+					font-size: .75 * $baseText;
+
+					&:before {
+						display: none;
+					}
+				}
+			}
+			
+			li {
+				li {
+					float: none;
+
+					a {
+						font-size: .75 * $baseText;
+						font-family: inherit;
+					}
+				}
+			}
+
+			li.active,
+			li:hover {
+				background: none;
+			}
+
+			li:hover {
+				position: relative;
+				background: #333333;
+
+				.dropdown {
+					display: block;
+					position: absolute;
+					left: 0;
+					min-width: 100%;
+					background: #333333;
+				}
+			}
+		}
+	}
 }
 
-@include for-desktops {
+@include desktops-and-up {
+	body {
+		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzE3MTcxNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ5JSIgc3RvcC1jb2xvcj0iIzE3MTcxNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iIzIyMjIyMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyMjIyMjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+		background: -moz-linear-gradient(left,  $torso_bg 1%, $torso_bg 50%, $matte 50%, $matte 100%);
+		background: -webkit-gradient(linear, left top, right top, color-stop(1%,$torso_bg), color-stop(50%,$torso_bg), color-stop(50%,$matte), color-stop(100%,$matte));
+		background: -webkit-linear-gradient(left,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
+		background: -o-linear-gradient(left,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
+		background: -ms-linear-gradient(left,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
+		background: linear-gradient(to right,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$torso_bg', endColorstr='$matte',GradientType=1 );
+	}
+
 	.torso aside.primary {
 		display: block;
 		float: right;
-		width: 25%;
+		width: 33.333%;
+		padding-left: 1em;
 	}
+
 	.torso aside.primary ~ .main {
 		float: left;
-		width: 75%;
+		width: 66.666%;
+		padding-right: $baseText;
+		border-right: 3px solid $border;
 	}
 }
 

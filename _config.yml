@@ -6,12 +6,12 @@ description: Kevin Hamer's Blog
 url: http://becauserobots.com
 
 navigation:
-- text: blog
+- text: Articles
   relative_url: /
   url: /index.html
-- text: projects
+- text: Projects
   relative_url: projects
   url: /projects.html
-- text: about
+- text: About
   relative_url: about
   url: /about.html
