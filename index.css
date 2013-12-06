@@ -1,0 +1,45 @@
+/*
+Syntax error: Properties are only allowed within rules, directives, mixin includes, or other properties.
+        on line 2 of index.md
+
+1: ---
+2: title: BecauseRobots
+3: layout: barebones
+4: ---
+5: 
+6: <section class="blog">
+7: 	{% for post in site.posts limit: 10 %}
+
+Backtrace:
+index.md:2
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/check_nesting.rb:13:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/base.rb:53:in `map'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/check_nesting.rb:29:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/check_nesting.rb:36:in `visit_root'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/check_nesting.rb:15:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/visitors/base.rb:24:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/tree/root_node.rb:19:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/engine.rb:315:in `_render'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/engine.rb:262:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:201:in `each'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:235:in `watch'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/plugin.rb:107:in `method_missing'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/exec.rb:455:in `watch_or_update'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/exec.rb:318:in `process_result'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/exec.rb:41:in `parse'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/lib/sass/exec.rb:21:in `parse!'
+/var/lib/gems/1.9.1/gems/sass-3.2.10/bin/sass:9:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Properties are only allowed within rules, directives, mixin includes, or other properties.\A         on line 2 of index.md\A \A 1: ---\A 2: title: BecauseRobots\A 3: layout: barebones\A 4: ---\A 5: \A 6: <section class=\"blog\">\A 7: 	{% for post in site.posts limit: 10 %}"; }

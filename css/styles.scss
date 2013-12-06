@@ -31,20 +31,23 @@
 #F8C630 Saffron f4c430
 #8ED5E1 Morning Glory 9edee0
 #EE3333 Pomegranate f34723
+#F4C430 Tron Yellow
+#8ED5E1 Tron Blue
+#EE3333 BecauseRobots Red
 */
 $gold: #f4c430;
 $blue: #8ed5e1;
 $red:  #ee3333;
 
-$matte:      #222222;
-$torso_bg:   #171717;
-$selection:  mix($red, $matte, 50%);
+$matte:      #171717;
+$torso_bg:   $matte;
+$selection: darken($matte, 50%);
 
 $baseText: 18px;
 
 $plain_text: #bbbbbb;
 $meta_text:  #555555;
-$link:       $red;
+$link:       $blue;
 $link_hover: $gold;
 
 $border:     $meta_text;
@@ -65,10 +68,10 @@ $info:       darken(#B8E0F9, 80%); // Sail
 }
 
 /* = Base = */
-a, abbr, address, article, aside, audio, b, blockquote, body, canvas, cite,
-code, dd, div, dl, dt, em, fieldset, footer, form, h1, h2, h3, h4, h5, h6,
-header, html, hr, i, iframe, img, label, li, nav, object, ol, p, pre, section,
-span, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, ul, video {
+a, abbr, address, article, aside, audio, b, blockquote, body, button, canvas, cite, code, dd, div,
+dl, dt, em, fieldset, footer, form, h1, h2, h3, h4, h5, h6, header, html, hr, i, input, iframe, img,
+label, li, nav, object, ol, p, pre, section, span, strong, sub, sup, table, tbody, td, textarea,
+tfoot, th, thead, tr, ul, video {
 	border: 0;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -218,17 +221,19 @@ img {
 
 /* = Layout = */
 header.primary {
+	box-shadow: 0 -3px $border inset;
 	background: $matte;
 
 	.branding {
 		h1 {
 			font-size: 1.5 * $baseText;
 			padding-bottom: 0;
+			font-weight: 600;
 
 			a,
 			a:hover {
 				color: $plain_text;
-				display: block;
+				display: inline-block;
 				padding-bottom: .5em;
 				padding-top: .5em;
 			}
@@ -294,6 +299,7 @@ footer.primary {
 %heading {
 	font-weight: 300;
 	position: relative;
+	text-shadow: 0 1px 0 darken($plain_text, 45%);
 
 	&:first-child {
 		padding-top: 0;
@@ -311,7 +317,8 @@ h5 + h6 {
 
 h1 {
 	@extend %heading;
-	color: $red;
+	color: $gold;
+	text-shadow: 0 1px 0 darken($gold, 45%);
 	font-size: 2.5 * $baseText;
 	line-height: 1.2;
 	padding-bottom: .6em;
@@ -320,7 +327,8 @@ h1 {
 
 h2 {
 	@extend %heading;
-	color: $gold;
+	color: $red;
+	text-shadow: 0 1px 0 darken($red, 45%);
 	font-size: 2 * $baseText;
 	line-height: 1.2;
 	padding-bottom: .75em;
@@ -330,6 +338,7 @@ h2 {
 h3 {
 	@extend %heading;
 	color: $blue;
+	text-shadow: 0 1px 0 darken($blue, 45%);
 	font-size: 1.5 * $baseText;
 	line-height: 1.3;
 	padding-bottom: 1em;
@@ -337,6 +346,7 @@ h3 {
 }
 
 h4 {
+	color: lighten($plain_text, 25%);
 	@extend %heading;
 	font-size: 1.25 * $baseText;
 	line-height: 1.4;
@@ -453,7 +463,7 @@ a {
 
 	&:hover,
 	&:active {
-		color: $link_hover;
+		box-shadow: 0 -2px 0 $link inset;
 	}
 
 	&:focus {
@@ -679,7 +689,6 @@ a.pdf:before,
 
 /* = Navigation = */
 nav.primary {
-	box-shadow: 0 -3px $border inset;
 	z-index: 1;
 
 	&:before,
@@ -725,7 +734,7 @@ nav.primary {
 
 		li:hover,
 		li.active {
-			background: #1a1a1a;
+			background: $blue;
 
 			> a {
 				box-shadow: 0 -3px $link inset;
@@ -842,7 +851,7 @@ fieldset .help {
 input[type="password"],
 input[type="text"],
 textarea {
-	border: 1px solid #ccc;
+	border: 0;
 	color: $plain_text;
 	display: block;
 	font-family: Arial, Helvetica, sans-serif;
@@ -897,7 +906,8 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"],
 a.button {
-	background: $red;
+	background: $link;
+	box-shadow: 0 0 $baseText*2 darken($link, 33%) inset;
 	color: $matte;
 	display: inline-block;
 	font-family: 'Signika', Arial, Helvetica, sans-serif;
@@ -909,8 +919,7 @@ a.button {
 	text-align: center;
 
 	&:hover {
-		background: lighten($red, 20%);
-		box-shadow: 0 0 $baseText*2 $red inset;
+		box-shadow: none;
 		cursor: pointer;
 	}
 
@@ -1029,7 +1038,7 @@ table {
 		display: block;
 		position: absolute;
 		right: 10px;
-		top: 13px;
+		top: 27px;
 
 		a {
 			display: block;
@@ -1041,6 +1050,7 @@ table {
 		li:hover {
 			a {
 				color: $plain_text;
+				box-shadow: 0 -3px 0 $link inset;
 			}
 		}
 	}
@@ -1117,17 +1127,6 @@ table {
 }
 
 @include desktops-and-up {
-	body {
-		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iIzE3MTcxNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ5JSIgc3RvcC1jb2xvcj0iIzE3MTcxNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iIzIyMjIyMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyMjIyMjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-		background: -moz-linear-gradient(left,  $torso_bg 1%, $torso_bg 50%, $matte 50%, $matte 100%);
-		background: -webkit-gradient(linear, left top, right top, color-stop(1%,$torso_bg), color-stop(50%,$torso_bg), color-stop(50%,$matte), color-stop(100%,$matte));
-		background: -webkit-linear-gradient(left,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
-		background: -o-linear-gradient(left,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
-		background: -ms-linear-gradient(left,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
-		background: linear-gradient(to right,  $torso_bg 1%,$torso_bg 50%,$matte 50%,$matte 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$torso_bg', endColorstr='$matte',GradientType=1 );
-	}
-
 	.torso aside.primary {
 		display: block;
 		float: right;
