@@ -35,19 +35,27 @@
 #8ED5E1 Tron Blue
 #EE3333 BecauseRobots Red
 */
-$gold: #f4c430;
-$blue: #8ed5e1;
-$red:  #ee3333;
 
-$matte:      #171717;
-$torso_bg:   $matte;
-$selection: darken($matte, 50%);
+/** Forbidden Planet
+ * #E6412D Red Cinnabar
+ * #e9cc16 Gold
+ * #34536a darkblue
+ */
+$gold: #e9cc16;
+$lightblue: #688dac;
+$blue: #34536a;
+$red:  #e6412d;
+
+$matte:      #15161a;
+$torso_bg:   transparent;
+$selection: lighten($matte, 50%);
 
 $baseText: 18px;
 
-$plain_text: #bbbbbb;
-$meta_text:  #555555;
-$link:       $blue;
+$plain_text: #d5d6cd;
+//$meta_text:  #85736c;
+$meta_text: $blue;
+$link:       $red;
 $link_hover: $gold;
 
 $border:     $meta_text;
@@ -57,7 +65,7 @@ $error:      darken(#FFD8D9, 80%); // Cosmos
 $info:       darken(#B8E0F9, 80%); // Sail
 
 /* = Web Fonts = */
-@import url(http://fonts.googleapis.com/css?family=Signika:300,400,600|Signika+Negative:300,400,600);
+@import url(http://fonts.googleapis.com/css?family=Signika+Negative:300,600,700|Signika:300,600,700|Yanone+Kaffeesatz:200,300,400,700);
 
 @font-face {
   font-family: 'FontAwesome';
@@ -89,8 +97,10 @@ article, aside, audio, canvas, footer, header, nav, section, video {
 }
 
 html {
-
 	background: $matte;
+	background-image: url(../img/space.jpg);
+	background-repeat: repeat;
+	background-attachment: fixed;
 	color: $plain_text;
 	font-family: 'Signika Negative', Arial, Helvetica, sans-serif;
 	font-weight: 300;
@@ -102,7 +112,7 @@ html {
 }
 
 body {
-	background: $torso_bg;
+	background: transparentize($matte, .2);
 	min-width: 300px;
 }
 
@@ -138,7 +148,8 @@ img {
 @mixin container {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 1024px;
+	//max-width: 1024px;
+	max-width: 564px;
 	padding-left: $baseText;
 	padding-right: $baseText;
 	position: relative;
@@ -149,7 +160,22 @@ img {
 		display: none;
 	}
 
-	@include for-tablets-and-up {
+	@media only screen and (min-width: 600px) {
+		display: table;
+		table-layout: fixed;
+		width: 100%;
+
+		> * {
+			display: table-cell;
+			vertical-align: top;
+		}
+		> hr {
+			display: table-cell;
+			width: $baseText;
+		}
+	}
+
+	html.lt-ie9 & {
 		display: table;
 		table-layout: fixed;
 		width: 100%;
@@ -165,32 +191,12 @@ img {
 	}
 }
 
-@mixin for-tablets-and-up {
-	@media only screen and (min-width: 600px) {
-		@content;
-	}
-
-	html.lt-ie9 & {
-		@content;
-	}
-}
-
 @mixin tablets-and-up {
-	@media only screen and (min-width: 600px) {
+	@media only screen and (min-width: 440px) {
 		@content;
 	}
 
 	html.lt-ie9 {
-		@content;
-	}
-}
-
-@mixin for-desktops-and-up {
-	@media only screen and (min-width: 700px) {
-		@content;
-	}
-
-	html.lt-ie9 & {
 		@content;
 	}
 }
@@ -201,6 +207,12 @@ img {
 	}
 
 	html.lt-ie9 {
+		@content;
+	}
+}
+
+@mixin widescreen-and-up {
+	@media only screen and (min-width: 1145px) {
 		@content;
 	}
 }
@@ -221,10 +233,10 @@ img {
 
 /* = Layout = */
 header.primary {
-	box-shadow: 0 -3px $border inset;
-	background: $matte;
 
 	.branding {
+		float: left;
+
 		h1 {
 			font-size: 1.5 * $baseText;
 			padding-bottom: 0;
@@ -236,6 +248,13 @@ header.primary {
 				display: inline-block;
 				padding-bottom: .5em;
 				padding-top: .5em;
+				text-shadow: none;
+				//text-shadow: 0 1px 0 $link_hover;
+				
+				em {
+					color: $link;
+					font-style: normal;
+				}
 			}
 
 			&:before {
@@ -276,7 +295,7 @@ aside.primary {
 }
 
 .main aside {
-	background: mix($torso_bg, $meta_text, 80%);
+	background: mix($matte, $meta_text, 80%);
 	color: $meta_text;
 	//float: right;
 	font-size: .875 * $baseText;
@@ -287,9 +306,8 @@ aside.primary {
 }
 
 footer.primary {
-	border-top: 3px solid $border;
 	background: $matte;
-	color: $meta_text;
+	color: $blue;
 	font-size: .875 * $baseText;
 	padding-top: 1em;
 	padding-bottom: 1em;
@@ -297,13 +315,28 @@ footer.primary {
 
 /* = Typography = */
 %heading {
-	font-weight: 300;
+	text-transform: uppercase;
+	font-family: 'Yanone Kaffeesatz';
+	font-weight: 700;
 	position: relative;
-	text-shadow: 0 1px 0 darken($plain_text, 45%);
 
 	&:first-child {
 		padding-top: 0;
 	}
+
+	a:hover,
+	a:active {
+		color: $link;
+		text-shadow: 0 2px 0 $link_hover;
+	}
+}
+
+.meta + %heading {
+	padding-top: 0;
+}
+
+.main %heading {
+	text-align: center;
 }
 
 h1 + h2,
@@ -312,14 +345,32 @@ h3 + h4,
 h4 + h5,
 h5 + h6 {
 	padding-top: 0;
-	margin-top: -$baseText;
+	margin-top: -2 * $baseText;
+}
+
+h1 + h2,
+h1 + h2 a {
+	color: $gold;
+	font-weight: 300;
+	text-shadow: none;
+}
+
+h2 + h3,
+h2 + h3 a {
+	color: $gold;
+	font-weight: 400;
+}
+
+h3 + h4,
+h3 + h4 a {
+	color: $blue;
 }
 
 h1 {
 	@extend %heading;
-	color: $gold;
-	text-shadow: 0 1px 0 darken($gold, 45%);
-	font-size: 2.5 * $baseText;
+	color: $link;
+	text-shadow: 0 2px 0 $link_hover;
+	font-size: 3 * $baseText;
 	line-height: 1.2;
 	padding-bottom: .6em;
 	padding-top: 0.6em;
@@ -327,9 +378,9 @@ h1 {
 
 h2 {
 	@extend %heading;
-	color: $red;
-	text-shadow: 0 1px 0 darken($red, 45%);
-	font-size: 2 * $baseText;
+	color: $link;
+	text-shadow: 0 2px 0 $link_hover;
+	font-size: 2.5 * $baseText;
 	line-height: 1.2;
 	padding-bottom: .75em;
 	padding-top: .75em;
@@ -337,32 +388,33 @@ h2 {
 
 h3 {
 	@extend %heading;
-	color: $blue;
-	text-shadow: 0 1px 0 darken($blue, 45%);
-	font-size: 1.5 * $baseText;
+	color: $lightblue;
+	font-size: 2 * $baseText;
 	line-height: 1.3;
 	padding-bottom: 1em;
 	padding-top: 1em;
 }
 
 h4 {
-	color: lighten($plain_text, 25%);
+	color: $gold;
 	@extend %heading;
 	font-size: 1.25 * $baseText;
+	font-weight: 400;
 	line-height: 1.4;
 	padding-bottom: 1.2em;
 	padding-top: 1.2em;
 }
 
-.main %heading {
-	margin-left: -$baseText;
-}
-
 .meta {
-	color: $meta_text;
-	font-size: .75 * $baseText;
+	color: $matte;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-family: 'Yanone Kaffeesatz';
+	font-size: $baseText;
+	line-height: 1;
 	margin-bottom: .5em;
-	margin-top: -.667em;
+	text-align: center;
+	background: $blue;
 }
 
 abbr[title] {
@@ -395,6 +447,11 @@ blockquote {
 
 article {
 	margin-bottom: 3em;
+
+	> h2:first-child {
+		box-shadow: 0 (-$baseText) 0 $blue;
+		padding-top: $baseText/2;
+	}
 }
 
 .intro {
@@ -408,7 +465,7 @@ article {
 }
 
 .highlight {
-	background: mix($torso_bg, $meta_text, 80%);
+	background: mix($matte, $meta_text, 80%);
 	color: $meta_text;
 	font-size: 1.5 * $baseText;
 	line-height: 1.34;
@@ -426,11 +483,15 @@ article {
 	}
 }
 
+.actions {
+	text-align: center;
+}
+
 pre,
 code {
 	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', monospace;
 	font-size: .875 * $baseText;
-	background: lighten($torso_bg, 5%);
+	background: lighten($matte, 5%);
 	font-weight: 400;
 }
 
@@ -463,7 +524,7 @@ a {
 
 	&:hover,
 	&:active {
-		box-shadow: 0 -2px 0 $link inset;
+		color: $link_hover;
 	}
 
 	&:focus {
@@ -694,12 +755,12 @@ nav.primary {
 	&:before,
 	ul:before {
 		bottom: 100%;
-		color: #000;
+		color: $blue;
 		content: '\f0c9';
 		display: block;
 		font-family: 'FontAwesome';
 		font-size: 2.5 * $baseText;
-		padding: .35em .6em;
+		padding: 0 .6em;
 		position: absolute;
 		right: 0;
 	}
@@ -719,10 +780,12 @@ nav.primary {
 			}
 
 			a {
+				text-transform: uppercase;
+				font-weight: 700;
 				border-top: 1px solid #212121;
 				display: block;
 				padding: .5em $baseText;
-				color: #fff;
+				//color: #fff;
 
 				&:before {
 					font-family: 'FontAwesome';
@@ -737,7 +800,6 @@ nav.primary {
 			background: $blue;
 
 			> a {
-				box-shadow: 0 -3px $link inset;
 
 				&:before {
 					margin-right: -.5em;
@@ -768,6 +830,22 @@ nav.secondary {
 
 nav.utility {
 	display: none;
+	float: right;
+
+	a {
+		display: block;
+		color: $blue;
+		font-size: 1.5 * $baseText;
+		opacity: 0.8;
+	}
+
+	li.active,
+	li:hover {
+		a {
+			opacity: 1;
+			color: $plain_text;
+		}
+	}
 }
 
 nav.supplemental {
@@ -907,19 +985,21 @@ input[type="reset"],
 input[type="submit"],
 a.button {
 	background: $link;
-	box-shadow: 0 0 $baseText*2 darken($link, 33%) inset;
 	color: $matte;
 	display: inline-block;
-	font-family: 'Signika', Arial, Helvetica, sans-serif;
-	font-weight: 400;
-	line-height: 1;
-	margin-bottom: .5em;
-	margin-right: .5em;
-	padding: .6em .7em;
+	font-family: 'Yanone Kaffeesatz';
+	font-weight: 700;
+	font-size: 1.5 * $baseText;
+	text-transform: uppercase;
+	line-height: 1.5;
+	padding: 0 .5 * $baseText;
 	text-align: center;
 
+	-moz-transform: translate(-1px, -1px);
+	-webkit-transform: translate(-1px, -1px);
+	box-shadow: 2px 2px 0 $gold;
+
 	&:hover {
-		box-shadow: none;
 		cursor: pointer;
 	}
 
@@ -1036,32 +1116,15 @@ table {
 
 	nav.utility {
 		display: block;
-		position: absolute;
-		right: 10px;
-		top: 27px;
-
-		a {
-			display: block;
-			color: $meta_text;
-			font-size: 1.5 * $baseText;
-		}
-
-		li.active,
-		li:hover {
-			a {
-				color: $plain_text;
-				box-shadow: 0 -3px 0 $link inset;
-			}
-		}
 	}
 
 	nav.secondary {
 		display: block;
-		background: #2e2e2e;
+		background: $blue;
 
 		a {
 			display: block;
-			color: #bbbbbb;
+			color: $plain_text;
 			font-size: .75 * $baseText;
 			line-height: 2;
 		}
@@ -1069,7 +1132,7 @@ table {
 		li.active,
 		li:hover {
 			a {
-				color: $link;
+				color: $gold;
 			}
 		}
 	}
@@ -1112,14 +1175,14 @@ table {
 
 			li:hover {
 				position: relative;
-				background: #333333;
+				background: $blue;
 
 				.dropdown {
 					display: block;
 					position: absolute;
 					left: 0;
 					min-width: 100%;
-					background: #333333;
+					background: $blue;
 				}
 			}
 		}
@@ -1139,6 +1202,22 @@ table {
 		width: 66.666%;
 		padding-right: $baseText;
 		border-right: 3px solid $border;
+	}
+}
+
+@include widescreen-and-up {
+	.container {
+		max-width: 1092px + 2 * $baseText;
+
+		section.blog {
+			margin: 0 -$baseText;
+			@include grouping;
+
+			article {
+				width: 528px;
+				margin: 0 $baseText;
+			}
+		}
 	}
 }
 

@@ -1,4 +1,6 @@
 ;(function() {
+	$('code').each(function(i, e) {hljs.highlightBlock(e);});
+
 	var focusedElement = null;
 	var focus = function(evt) {
 		var className = evt.target.className;
@@ -22,4 +24,8 @@
 	} else {
 		document.attachEvent(onEvent, focus);
 	}
+
+	$('section').masonry({
+		itemSelector: 'article'
+	});
 })();

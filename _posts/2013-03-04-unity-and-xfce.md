@@ -24,8 +24,7 @@ change or fix nearly anything about my system for years now and have had plenty 
 exactly what I want:
 
 
-I want to know what's open
---------------------------
+### I want to know what's open
 
 This requirement seems to be the least popular, as Windows 7, OS X, Gnome 3, and even Unity have all
 obscured this information if not flat out hid it. Most of these follow a similar pattern:
@@ -65,8 +64,7 @@ removed by all of the others) instead of the icons, and often list them down the
 monitor. Like this, I easily have enough space.
 
 
-Window placement should be keyboard controllable
-------------------------------------------------
+### Window placement should be keyboard controllable
 
 One of the best usability features of Windows Vista was the hotkeys it provided for window
 management. Win+Left, Win+Right, Win+Up, and Win+Down are intuitive, easy to use, and were even
@@ -85,8 +83,7 @@ This functionality isn't part of OSX, but other people have written small apps t
 remember using 2Up previously, and a colleague has mentioned Moom.
 
 
-I should be able to launch applications by typing only
-------------------------------------------------------
+### I should be able to launch applications by typing only
 
 Luckily for me, this is a popular thing these days; originally I had to rely on launchers like
 Launchy to add this functionality. Windows Vista added this to the start menu, and Windows 8 has
