@@ -3,7 +3,7 @@ title: BecauseRobots
 layout: barebones
 ---
 
-<section class="blog">
+<section class="articles">
 	{% for post in site.posts limit: 10 %}
 		{% include article.md %}
 	{% endfor %}
