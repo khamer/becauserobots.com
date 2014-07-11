@@ -24,8 +24,4 @@
 	} else {
 		document.attachEvent(onEvent, focus);
 	}
-
-	$('section').masonry({
-		itemSelector: 'article'
-	});
 })();

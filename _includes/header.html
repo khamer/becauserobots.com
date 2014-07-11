@@ -11,7 +11,6 @@
 		<meta name="author" content="Kevin Hamer" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="stylesheet" type="text/css" href="/css/styles.css" media="all" />
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" media="all" />
 		<!--[if lt IE 9]>
 			<script src="/js/html5shiv.js"></script>
 		<![endif]-->
@@ -21,35 +20,35 @@
 			<div class="container">
 				<div class="branding">
 					<h1>
-						<a href="/"><em>Because</em>Robots</a>
+						<a href="/">Because<span>Robots</span></a>
 					</h1>
 				</div>
 				<nav class="utility">
 					<ul class="container">
-						<li><a href="https://bitbucket.org/khamer"><i class="fa fa-bitbucket"></i></a></li>
-						<li><a href="https://github.com/khamer"><i class="fa fa-github"></i></a></li>
-						<li><a href="https://twitter.com/khamer"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="http://facebook.com/kevin.hamer"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="http://steamcommunity.com/id/becauserobots"><i class="fa fa-circle-o"></i></a></li>
-						<li><a href="feed.xml"><i class="fa fa-rss"></i></a></li>
+						{% comment %}<li><a href="https://bitbucket.org/khamer"></a></li>{% endcomment %}
+						<li><a href="https://github.com/khamer"></a></li>
+						<li><a href="https://twitter.com/khamer"></a></li>
+						<li><a href="http://facebook.com/kevin.hamer"></a></li>
+						<li><a href="http://delicious.com/khamer"></a></li>
+						<li><a href="http://steamcommunity.com/id/becauserobots"></a></li>
+					</ul>
+				</nav>
+
+				<nav class="primary">
+					<ul>
+						{% for link in site.navigation %}
+							{% if page.url == link.url %}
+								{% assign class = 'active' %}
+							{% else %}
+								{% assign class = '' %}
+							{% endif %}
+							<li class="{{ class }}">
+							<a href="{{ link.relative_url }}">{{ link.text }}</a>
+							</li>
+						{% endfor %}
 					</ul>
 				</nav>
 			</div>
-
-			<nav class="primary">
-				<ul class="container focusable">
-					{% for link in site.navigation %}
-						{% if page.url == link.url %}
-							{% assign class = 'active' %}
-						{% else %}
-							{% assign class = '' %}
-						{% endif %}
-						<li class="{{ class }}">
-						<a href="{{ link.relative_url }}">{{ link.text }}</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</nav>
 		</header>
 
 		<div class="group torso container">

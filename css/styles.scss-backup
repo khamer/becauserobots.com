@@ -49,8 +49,9 @@ $selection:  #FFF1B5; // Buttermilk
 
 $plain-text: #555555; // Emperor
 $meta-text:  #888888; // Gray
-$link:       #ee3333;
-$link-hover: #ff4444;
+$link:       #0394CD; // iMarc Blue
+$link:       #e33;
+$link-hover: #888888; // Gray
 $highlight:  #f2006d; // iMarc Pink
 
 $border:     #DDDDDD; // Alto
@@ -234,21 +235,19 @@ img {
 }
 
 ::-moz-selection {
-	background: $link;
-	color: $torso-bg;
+	background: $selection;
 	text-shadow: none;
 }
 
 ::selection {
-	background: $link;
-	color: $torso-bg;
+	background: $selection;
 	text-shadow: none;
 }
 
 
 /* = Layout = */
 header.primary {
-	background: #1a1a1a;
+	@include bg-gradient(#2e2e2e, #1a1a1a);
 
 	.branding {
 		h1 {
@@ -260,10 +259,6 @@ header.primary {
 				display: block;
 				padding-bottom: .5em;
 				padding-top: .5em;
-
-				span {
-					color: $link;
-				}
 			}
 		}
 	}
@@ -320,10 +315,6 @@ footer.primary {
 	&:first-child {
 		padding-top: 0;
 	}
-
-	.meta + & {
-		padding-top: 0;
-	}
 }
 
 h1 + h2,
@@ -365,19 +356,10 @@ h6 {
 }
 
 .meta {
+	color: $meta-text;
 	font-size: .75 * $rem;
 	margin-bottom: .5em;
 	margin-top: -.667em;
-
-	background: $link;
-	color: $torso-bg;
-	box-shadow: 3px 0 0 $torso-bg, 6px 0 0 $link, -3px 0 0 $torso-bg, -6px 0 0 $link;
-	padding: 0 3px;
-}
-
-.meta:first-child:before {
-	@include fontawesome;
-	content: '\f063';
 }
 
 abbr[title] {
@@ -422,10 +404,10 @@ article {
 }
 
 .highlight {
-	padding: $rem;
-	margin-bottom: $phi * $rem;
+	padding: $rem/2;
+	margin: 0 $rem/-2 $phi * $rem;
 	background: mix($torso-bg, $meta-text, 80%);
-	border-radius: 4px;
+	border-radius: 0 4px 4px 4px;
 	color: $meta-text;
 	font-size: $phi * $rem;
 	line-height: 1.34;
@@ -450,12 +432,6 @@ pre {
 	white-space: pre;
 	white-space: pre-wrap;
 	word-wrap: break-word;
-
-	padding: $rem;
-	margin-bottom: $phi * $rem;
-	border-radius: 4px;
-	background: #2e2e2e;
-	color: $torso-bg;
 }
 
 p {
@@ -701,8 +677,21 @@ a.pdf:before,
 
 /* = Navigation = */
 nav.primary {
-	float: left;
 	z-index: 1;
+
+	&:before,
+	ul:before {
+		@include fontawesome;
+
+		bottom: 100%;
+		color: #000;
+		content: '\f0c9';
+		display: block;
+		font-size: 2.5 * $rem;
+		padding: .35em .6em;
+		position: absolute;
+		right: 0;
+	}
 
 	ul {
 		&:before {
@@ -710,6 +699,9 @@ nav.primary {
 		}
 
 		li {
+			float: none;
+			display: none;
+
 			.dropdown {
 				display: none;
 			}
@@ -717,16 +709,25 @@ nav.primary {
 			a {
 				@include headingType;
 
+				border-top: 1px solid #212121;
 				display: block;
 				padding: .5em $rem;
 				color: #fff;
+
+				&:before {
+					@include fontawesome;
+
+					content: '\f054';
+					float: right;
+				}
 			}
 		}
 
 		li:hover,
 		li.active {
+			background: #1a1a1a;
+
 			> a {
-				background: $torso-bg;
 				color: $link;
 
 				&:before {
@@ -752,26 +753,12 @@ nav.primary {
 	}
 }
 
+nav.secondary {
+	display: none;
+}
+
 nav.utility {
-	float: right;
-
-	a {
-		@include fontawesome;
-		font-size: 0;
-		color: #fff;
-		line-height: 2;
-	}
-
-	a:before {
-		font-size: $rem;
-	}
-
-	a[href*="bitbucket.org"]:before {      content: '\f171'; }
-	a[href*="facebook.com"]:before {       content: '\f09a'; }
-	a[href*="github.com"]:before {         content: '\f09b'; }
-	a[href*="steamcommunity.com"]:before { content: '\f1b6'; }
-	a[href*="twitter.com"]:before {        content: '\f099'; }
-	a[href*="delicious.com"]:before {      content: '\f1a5'; }
+	display: none;
 }
 
 nav.supplemental {
@@ -910,11 +897,12 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"],
 a.button {
-	font-weight: 400;
-	border: 2px solid $link;
-	color: $link;
-	background: transparent;
+	@include bg-gradient($link, darken($link, 10%));
+	@include headingType;
 
+	border: 1px solid darken($link, 10%);
+	border-radius: 4px;
+	color: #fff;
 	display: inline-block;
 	line-height: 1;
 	margin-bottom: .5em;
@@ -924,13 +912,12 @@ a.button {
 
 	&:hover {
 		background: $link;
-		color: $torso-bg;
 		border-color: $link;
 		cursor: pointer;
 	}
 
 	&:focus {
-		background: $link;
+		background: #0084B8;
 	}
 }
 
@@ -939,8 +926,8 @@ input[type="button"][disabled],
 input[type="reset"][disabled],
 input[type="submit"][disabled],
 a.button.disabled {
-	border-color: $border;
-	background: $border;
+	@include bg-gradient($meta-text, darken($meta-text, 10%));
+	border-color: darken($meta-text, 10%);
 	cursor: default;
 }
 
@@ -948,19 +935,6 @@ button::-moz-focus-inner,
 input::-moz-focus-inner {
 	border: 0;
 	padding: 0;
-}
-
-
-/* = Advanced Forms = */
-select {
-	border: 2px solid $link;
-	color: $link;
-	background: transparent;
-}
-
-textarea {
-	border: 2px solid $link;
-	outline: 0;
 }
 
 /* = Messaging = */
@@ -1036,11 +1010,11 @@ table {
 	}
 
 	th {
-		@include headingType;
-
+		font-weight: bold;
 		background: $plain-text;
 		border: 1px solid $plain-text;
 		color: #fff;
+		text-transform: uppercase;
 	}
 
 	td {
@@ -1059,6 +1033,120 @@ table {
 
 
 /* = Media Queries = */
+@include tablets-and-up {
+
+	.main aside {
+		float: right;
+		margin-left: 1em;
+		width: 33.33%;
+	}
+
+	nav.utility {
+		display: block;
+		position: absolute;
+		right: 2 * $rem;
+		top: 1em;
+
+		a {
+			display: block;
+			color: #fff;
+			font-size: .75 * $rem;
+		}
+
+		li.active,
+		li:hover {
+			a {
+				color: $link;
+			}
+		}
+	}
+
+	nav.secondary {
+		display: block;
+		background: #2e2e2e;
+
+		a {
+			display: block;
+			color: #bbbbbb;
+			font-size: .8125 * $rem;
+			line-height: 2;
+		}
+
+		li.active,
+		li:hover {
+			a {
+				color: $link;
+			}
+		}
+	}
+
+	nav.primary {
+		&:before,
+		ul:before {
+			display: none;
+		}
+
+		ul {
+			li {
+				float: left;
+				display: block;
+
+				a {
+					@include headingType;
+
+					border-top: 0;
+
+					&:before {
+						display: none;
+					}
+				}
+			}
+			
+			li {
+				li {
+					float: none;
+
+					a {
+						font-size: .8125 * $rem;
+						font-family: inherit;
+					}
+				}
+			}
+
+			li.active,
+			li:hover {
+				background: none;
+			}
+
+			li:hover {
+				position: relative;
+				background: #333333;
+
+				.dropdown {
+					display: block;
+					position: absolute;
+					left: 0;
+					min-width: 100%;
+					background: #333333;
+				}
+			}
+		}
+	}
+}
+
+@include desktops-and-up {
+
+	.torso aside.primary {
+		display: block;
+		float: right;
+		width: 25%;
+	}
+	.torso aside.primary ~ .main {
+		float: left;
+		width: 75%;
+		padding-right: 2em;
+	}
+}
 
 @media print {
 	* {
