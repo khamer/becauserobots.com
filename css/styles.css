@@ -120,6 +120,9 @@ header.primary {
       display: block;
       padding-bottom: .5em;
       padding-top: .5em; }
+      header.primary .branding h1 a span,
+      header.primary .branding h1 a:hover span {
+        color: #ee3333; }
 
 .torso {
   padding-top: 1.61803em;
@@ -170,6 +173,8 @@ h1 {
   font-size: 55px; }
   h1:first-child {
     padding-top: 0; }
+  .meta + h1 {
+    padding-top: 0; }
 
 h2 {
   font-family: "Oswald";
@@ -180,6 +185,8 @@ h2 {
   padding-bottom: 11.12461px;
   font-size: 34px; }
   h2:first-child {
+    padding-top: 0; }
+  .meta + h2 {
     padding-top: 0; }
 
 h3 {
@@ -192,6 +199,8 @@ h3 {
   font-size: 21px; }
   h3:first-child {
     padding-top: 0; }
+  .meta + h3 {
+    padding-top: 0; }
 
 h4 {
   font-family: "Oswald";
@@ -202,6 +211,8 @@ h4 {
   padding-bottom: 11.12461px;
   font-size: 22.5px; }
   h4:first-child {
+    padding-top: 0; }
+  .meta + h4 {
     padding-top: 0; }
 
 h5,
@@ -215,12 +226,28 @@ h6 {
   h5:first-child,
   h6:first-child {
     padding-top: 0; }
+  .meta + h5, .meta +
+  h6 {
+    padding-top: 0; }
 
 .meta {
-  color: #888888;
   font-size: 13.5px;
   margin-bottom: .5em;
-  margin-top: -.667em; }
+  margin-top: -.667em;
+  background: #ee3333;
+  color: #fcfcfc;
+  box-shadow: 3px 0 0 #fcfcfc, 6px 0 0 #ee3333, -3px 0 0 #fcfcfc, -6px 0 0 #ee3333;
+  padding: 0 3px; }
+
+.meta:first-child:before {
+  font-family: FontAwesome;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  text-transform: none;
+  content: '\f063'; }
 
 abbr[title] {
   border-bottom: 1px dotted; }
@@ -501,52 +528,23 @@ a.pdf:before,
 
 /* = Navigation = */
 nav.primary {
+  float: left;
   z-index: 1; }
-  nav.primary:before,
-  nav.primary ul:before {
-    font-family: FontAwesome;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-style: normal;
-    font-weight: normal;
-    speak: none;
-    text-transform: none;
-    bottom: 100%;
-    color: #000;
-    content: '\f0c9';
-    display: block;
-    font-size: 45px;
-    padding: .35em .6em;
-    position: absolute;
-    right: 0; }
   nav.primary ul:before {
     color: #555555; }
-  nav.primary ul li {
-    float: none;
+  nav.primary ul li .dropdown {
     display: none; }
-    nav.primary ul li .dropdown {
-      display: none; }
-    nav.primary ul li a {
-      font-family: "Oswald";
-      font-weight: 700;
-      line-height: 1.42387;
-      text-transform: uppercase;
-      border-top: 1px solid #212121;
-      display: block;
-      padding: 0.5em 18px;
-      color: #fff; }
-      nav.primary ul li a:before {
-        font-family: FontAwesome;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-style: normal;
-        font-weight: normal;
-        speak: none;
-        text-transform: none;
-        content: '\f054';
-        float: right; }
+  nav.primary ul li a {
+    font-family: "Oswald";
+    font-weight: 700;
+    line-height: 1.42387;
+    text-transform: uppercase;
+    display: block;
+    padding: 0.5em 18px;
+    color: #fff; }
   nav.primary ul li:hover > a,
   nav.primary ul li.active > a {
+    background: #fcfcfc;
     color: #ee3333; }
     nav.primary ul li:hover > a:before,
     nav.primary ul li.active > a:before {
@@ -559,11 +557,33 @@ nav.primary {
     padding-left: 0;
     padding-right: 0; }
 
-nav.secondary {
-  display: none; }
-
 nav.utility {
-  display: none; }
+  float: right; }
+  nav.utility a {
+    font-family: FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    text-transform: none;
+    font-size: 0;
+    color: #fff;
+    line-height: 2; }
+  nav.utility a:before {
+    font-size: 18px; }
+  nav.utility a[href*="bitbucket.org"]:before {
+    content: '\f171'; }
+  nav.utility a[href*="facebook.com"]:before {
+    content: '\f09a'; }
+  nav.utility a[href*="github.com"]:before {
+    content: '\f09b'; }
+  nav.utility a[href*="steamcommunity.com"]:before {
+    content: '\f1b6'; }
+  nav.utility a[href*="twitter.com"]:before {
+    content: '\f099'; }
+  nav.utility a[href*="delicious.com"]:before {
+    content: '\f1a5'; }
 
 nav.supplemental ul li {
   float: none; }
@@ -834,146 +854,6 @@ table {
 /* = Section Specific = */
 /* = Page Specific = */
 /* = Media Queries = */
-@media only screen and (min-width: 600px) {
-  .main aside {
-    float: right;
-    margin-left: 1em;
-    width: 33.33%; }
-
-  nav.utility {
-    display: block;
-    position: absolute;
-    right: 36px;
-    top: 1em; }
-    nav.utility a {
-      display: block;
-      color: #fff;
-      font-size: 13.5px; }
-    nav.utility li.active a,
-    nav.utility li:hover a {
-      color: #ee3333; }
-
-  nav.secondary {
-    display: block;
-    background: #2e2e2e; }
-    nav.secondary a {
-      display: block;
-      color: #bbbbbb;
-      font-size: 14.625px;
-      line-height: 2; }
-    nav.secondary li.active a,
-    nav.secondary li:hover a {
-      color: #ee3333; }
-
-  nav.primary:before,
-  nav.primary ul:before {
-    display: none; }
-  nav.primary ul li {
-    float: left;
-    display: block; }
-    nav.primary ul li a {
-      font-family: "Oswald";
-      font-weight: 700;
-      line-height: 1.42387;
-      text-transform: uppercase;
-      border-top: 0; }
-      nav.primary ul li a:before {
-        display: none; }
-  nav.primary ul li li {
-    float: none; }
-    nav.primary ul li li a {
-      font-size: 14.625px;
-      font-family: inherit; }
-  nav.primary ul li.active,
-  nav.primary ul li:hover {
-    background: none; }
-  nav.primary ul li:hover {
-    position: relative;
-    background: #333333; }
-    nav.primary ul li:hover .dropdown {
-      display: block;
-      position: absolute;
-      left: 0;
-      min-width: 100%;
-      background: #333333; } }
-html.lt-ie9 .main aside {
-  float: right;
-  margin-left: 1em;
-  width: 33.33%; }
-html.lt-ie9 nav.utility {
-  display: block;
-  position: absolute;
-  right: 36px;
-  top: 1em; }
-  html.lt-ie9 nav.utility a {
-    display: block;
-    color: #fff;
-    font-size: 13.5px; }
-  html.lt-ie9 nav.utility li.active a,
-  html.lt-ie9 nav.utility li:hover a {
-    color: #ee3333; }
-html.lt-ie9 nav.secondary {
-  display: block;
-  background: #2e2e2e; }
-  html.lt-ie9 nav.secondary a {
-    display: block;
-    color: #bbbbbb;
-    font-size: 14.625px;
-    line-height: 2; }
-  html.lt-ie9 nav.secondary li.active a,
-  html.lt-ie9 nav.secondary li:hover a {
-    color: #ee3333; }
-html.lt-ie9 nav.primary:before,
-html.lt-ie9 nav.primary ul:before {
-  display: none; }
-html.lt-ie9 nav.primary ul li {
-  float: left;
-  display: block; }
-  html.lt-ie9 nav.primary ul li a {
-    font-family: "Oswald";
-    font-weight: 700;
-    line-height: 1.42387;
-    text-transform: uppercase;
-    border-top: 0; }
-    html.lt-ie9 nav.primary ul li a:before {
-      display: none; }
-html.lt-ie9 nav.primary ul li li {
-  float: none; }
-  html.lt-ie9 nav.primary ul li li a {
-    font-size: 14.625px;
-    font-family: inherit; }
-html.lt-ie9 nav.primary ul li.active,
-html.lt-ie9 nav.primary ul li:hover {
-  background: none; }
-html.lt-ie9 nav.primary ul li:hover {
-  position: relative;
-  background: #333333; }
-  html.lt-ie9 nav.primary ul li:hover .dropdown {
-    display: block;
-    position: absolute;
-    left: 0;
-    min-width: 100%;
-    background: #333333; }
-
-@media only screen and (min-width: 700px) {
-  .torso aside.primary {
-    display: block;
-    float: right;
-    width: 25%; }
-
-  .torso aside.primary ~ .main {
-    float: left;
-    width: 75%;
-    padding-right: 2em; } }
-html.lt-ie9 .torso aside.primary {
-  display: block;
-  float: right;
-  width: 25%; }
-html.lt-ie9 .torso aside.primary ~ .main {
-  float: left;
-  width: 75%;
-  padding-right: 2em; }
-
 @media print {
   * {
     background: transparent !important;
